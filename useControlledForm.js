@@ -32,7 +32,8 @@ export default function useControlledForm({
   const [state, dispatch] = useReducer(reducer, { defaultValues, defaultContext }, initializer);
 
   function getValue(name) {
-    return state.values[name] ?? '';
+    // return state.values[name] ?? '';
+    return state.values[name] === undefined ? '' : state.values[name];
   }
 
   function setValue(name, value) {
