@@ -27,5 +27,7 @@
   "peerDependencies": {
     "react": "^16.13.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "isdifferent": "^2.0.0"
+  }
 }
