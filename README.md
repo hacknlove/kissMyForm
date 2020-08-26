@@ -1,4 +1,4 @@
-# useKMF
+# Kiss My Form
 
 **Kiss My Form** is probably the most simple yet powerfull react form helper out there.
 

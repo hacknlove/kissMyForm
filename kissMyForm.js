@@ -51,6 +51,10 @@ export default function kissMyForm({
   }
 
   function setValue(name, value) {
+    if (!beforeChange) {
+      dispatch({ values: { ...state.values, [name]: value }})
+      return
+    }
     const errorsCopy = { ...state.errors };
     const valuesCopy = { ...state.values };
 
