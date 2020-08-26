@@ -2,7 +2,7 @@
   "name": "kissmyform",
   "version": "1.0.0",
   "description": "a react hook to deal with forms",
-  "module": "useControlledForm.js",
+  "module": "kissMyForm.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
