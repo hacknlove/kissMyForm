@@ -4,7 +4,7 @@
   "description": "a react hook to deal with forms",
   "module": "kissMyForm.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd examples; npx cypress run"
   },
   "files": [
     "/kissMyForm.js"
@@ -29,7 +29,8 @@
   },
   "peerDependencies": {
     "react": "^16.13.1"
-  },  "dependencies": {
+  },
+  "dependencies": {
     "isdifferent": "^2.0.1"
   }
 }

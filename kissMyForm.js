@@ -52,8 +52,8 @@ export default function kissMyForm({
 
   function setValue(name, value) {
     if (!beforeChange) {
-      dispatch({ values: { ...state.values, [name]: value }})
-      return
+      dispatch({ values: { ...state.values, [name]: value } });
+      return;
     }
     const errorsCopy = { ...state.errors };
     const valuesCopy = { ...state.values };
@@ -93,6 +93,9 @@ export default function kissMyForm({
   }
 
   function validate() {
+    if (!beforeChange) {
+      return Object.keys(state.errors).length;
+    }
     const errorsCopy = { ...state.errors };
     const valuesCopy = { ...state.values };
 
