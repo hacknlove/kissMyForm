@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-one-expression-per-line */
 import { useState } from 'react';
-import useKMF from 'kissmyform';
+import BasicExample from 'examples/Basic';
 import styles from '../styles/Home.module.css';
 
 export default function Basic() {
-  const { inputControl, handleSubmit } = useKMF();
   const [submited, setSubmiter] = useState();
 
   return (
@@ -14,11 +13,7 @@ export default function Basic() {
 
         <div className={styles.card}>
           <h3>Form:</h3>
-          <form onSubmit={handleSubmit(setSubmiter)}>
-            <input {...inputControl('username')} />
-            <input {...inputControl('password')} type="password" />
-            <button> Login </button>
-          </form>
+          <BasicExample onSubmit={setSubmiter} />
         </div>
         {
           submited && (
