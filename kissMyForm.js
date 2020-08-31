@@ -11,7 +11,7 @@ function reducer(state, update) {
   }
 
   if (update.errors) {
-    update.errorsCount = Object.keys(update.errors).length;
+    update.hasErrors = Object.keys(update.errors).length;
   }
 
   const newState = {
@@ -85,6 +85,41 @@ export default function kissMyForm({
     dispatch(update);
   }
 
+  function validate() {
+    if (state.hasErrors) {
+      return state.hasErrors;
+    }
+    if (!beforeChange) {
+      return 0;
+    }
+
+    const values = { ...state.values };
+    const errors = { ...state.errors };
+
+    Object.entries(state.values).forEach(([name, value]) => {
+      beforeChange({
+        name, value, values, errors,
+      });
+    });
+
+    const update = {};
+
+    if (isDifferent(state.errors, errors)) {
+      update.errors = errors;
+    }
+
+    if (isDifferent(state.values, values)) {
+      update.values = values;
+    }
+
+    if (!Object.keys(update).length) {
+      return 0;
+    }
+
+    dispatch({ values, errors });
+    return Object.keys(errors).length;
+  }
+
   function setInput({ target: { name, value } }) {
     setValue(name, value);
   }
@@ -92,42 +127,26 @@ export default function kissMyForm({
     setValue(name, checked);
   }
 
-  function validate() {
-    if (!beforeChange) {
-      return Object.keys(state.errors).length;
-    }
-    const errorsCopy = { ...state.errors };
-    const valuesCopy = { ...state.values };
-
-    beforeChange({
-      errors: errorsCopy,
-      values: valuesCopy,
-    });
-
-    if (isDifferent(state.errors, errorsCopy)) {
-      dispatch({ errors: errorsCopy });
-    }
-
-    return Object.keys(errorsCopy).length;
-  }
-
   function handleSubmit(cb) {
     return (event) => {
       event.preventDefault();
-      if (state.errorsCount) {
-        return;
+      const errorCount = validate();
+      if (errorCount) {
+        return errorCount;
       }
-      if (validate()) {
-        return;
-      }
+
       const cancel = cb(state.values);
       if (!cancel) {
         dispatch({ initialValues: state.values });
       }
+      return 0;
     };
   }
 
   function inputControl(name) {
+    if (!state.values[name]) {
+      state.values[name] = '';
+    }
     return {
       name,
       value: getValue(name),
@@ -136,6 +155,9 @@ export default function kissMyForm({
   }
 
   function checkboxControl(name) {
+    if (!state.values[name]) {
+      state.values[name] = false;
+    }
     return {
       name,
       value: getValue(name),

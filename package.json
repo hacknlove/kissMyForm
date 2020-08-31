@@ -1,10 +1,13 @@
 {
   "name": "kissmyform",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a react hook to deal with forms",
   "module": "kissMyForm.js",
   "scripts": {
-    "test": "cd examples; npx cypress run"
+    "test": "cd examples; npx cypress run",
+    "cypress": "cd examples; npx cypress open",
+    "start": "cd examples; npm run dev",
+    "pretest": "cd examples; npm i; npm run build"
   },
   "files": [
     "/kissMyForm.js"
