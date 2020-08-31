@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -17,13 +18,22 @@ export default function Home() {
         </h1>
 
         <div className={styles.grid}>
-          <a href="/basic" className={styles.card}>
-            <h3>Basic example 🡓</h3>
-            <p>Just update the form state, and call the submit handler</p>
-          </a>
+          <Link href="/basic">
+            <a className={styles.card}>
+              <h3>Basic example &darr;</h3>
+              <p>Just update the form state, and call the submit handler</p>
+            </a>
+          </Link>
+
+          <Link href="/required">
+            <a className={styles.card}>
+              <h3>Basic example &darr;</h3>
+              <p>Just update the form state, and call the submit handler</p>
+            </a>
+          </Link>
 
           <a href="https://github.com/hacknlove/kissMyForm/issues" className={styles.card}>
-            <h3>More comming soon 🡒</h3>
+            <h3>More comming soon &rarr;</h3>
             <p>
               Ask any example you would love to have, in github issues
             </p>

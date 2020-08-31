@@ -14,3 +14,28 @@ a {
 * {
   box-sizing: border-box;
 }
+
+button {
+  border: 1px solid #acacac;
+  border-radius: 10px;
+  padding: 10px;
+  background: white;
+  margin-left: 1ex;
+  margin-right: 1ex;
+}
+button:hover {
+  border-color: #0070f3;
+}
+button:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+input {
+  border: 1px solid #acacac;
+  border-radius: 10px;
+  padding: 10px;
+  background: white;
+  margin-left: 1ex;
+  margin-right: 1ex;
+}
