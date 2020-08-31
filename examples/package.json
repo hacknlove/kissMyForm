@@ -9,8 +9,8 @@
     "serve": "serve ../docs -l 3000",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "cypress": "start-server-and-test dev http://localhost:3000 cy:open",
-    "test": "start-server-and-test serve http://localhost:3000 cy:run"
+    "cypress": "start-server-and-test dev http://localhost:3000/kissMyForm cy:open",
+    "test": "start-server-and-test serve http://localhost:3000/kissMyForm cy:run"
   },
   "dependencies": {
     "copy-text-to-clipboard": "^2.2.0",
