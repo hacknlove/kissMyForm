@@ -6,8 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "serve": "serve ../docs -l 3000",
     "cy:open": "cypress open",
-    "test": "start-server-and-test dev http://localhost:3000 cy:open"
+    "cy:run": "cypress run",
+    "cypress": "start-server-and-test dev http://localhost:3000 cy:open",
+    "test": "start-server-and-test serve http://localhost:3000 cy:run"
   },
   "dependencies": {
     "copy-text-to-clipboard": "^2.2.0",
@@ -15,7 +18,8 @@
     "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-syntax-highlighter": "^13.5.1"
+    "react-syntax-highlighter": "^13.5.1",
+    "serve": "^11.3.2"
   },
   "devDependencies": {
     "cypress": "^5.0.0",
