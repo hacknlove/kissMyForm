@@ -2,66 +2,10 @@
 
 **Kiss My Form** is probably the most simple yet powerfull react form helper out there.
 
-150 lines of code, that everyone can understan, are enough to enhance your developer experience, and also the performance of your webapplications when it comes to deal with forms.
+180 lines of code, that everyone can understan, are enough to enhance your developer experience, and also the performance of your webapplications when it comes to deal with forms.
 
-## Examples
-
-### Basic
-
-```javascript
-import useKMF from 'useKMF'
-
-exports default SomeFormComponent ({ onSubmit }) {
-  const { inputControl, handleSubmit } = useKMF()
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...inputControl('username')} />
-      <input {...inputControl('password')} type="password" />
-      <button> Login </button>
-    </form>
-  )
-}
-```
-
-### With Validation
-
-```javascript
-import useKMF from 'useKMF'
-
-function beforeChange ({ name, value, errors }) {
-  switch(name) {
-    case 'username':
-      if (value.length < 3) {
-        errors.username = 'Username must have at least 3 characters'
-        return
-      }
-      if (!value.match(/^[\w]*$/)) {
-        errors.username = 'Username must have at least 3 characters'
-        return
-      }
-      break
-    case 'password':
-      if (value.length < 8) {
-        errors.password = 'Password must have at least 8 characters'
-        return
-      }
-  }
-}
-
-exports default SomeFormComponent ({ onSubmit }) {
-  const { inputControl, handleSubmit, state: { errors, hasErrors } } = useKMF()
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...inputControl('username')} />
-      <input {...inputControl('password')} type="password" />
-      <button disabled={Boolean(hasErrors)}> Login </button>
-    </form>
-  )
-}
-
-```
+## Demos and Examples
+[google pages](https://hacknlove.github.io/kissMyForm/)
 
 ## API overview
 
