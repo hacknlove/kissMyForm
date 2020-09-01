@@ -5,7 +5,7 @@
 180 lines of very clear and readable code, are enough to enhance your DX and make it possible to bring your users a great form's UX with very little effort and verbosity.
 
 ## Demos and Examples
-[google pages](https://hacknlove.github.io/kissMyForm/)
+[demo and examples](https://hacknlove.github.io/kissMyForm/)
 
 ### Hello-Word-ish Example
 
