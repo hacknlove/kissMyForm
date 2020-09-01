@@ -26,9 +26,11 @@ function reducer(state, update) {
   return newState;
 }
 
-function initializer({ afterChange, initialValues }) {
+function initializer({ afterChange, initialValues, initialContext }) {
   return {
     afterChange,
+    context: { ...initialContext },
+    initialContext,
     initialValues,
     errors: {},
     hasErrors: 0,
@@ -42,40 +44,44 @@ const staticinitialValues = {};
 export default function kissMyForm({
   afterChange,
   beforeChange,
+  initialContext = staticinitialValues,
   initialValues = staticinitialValues,
 } = {}) {
-  const [state, dispatch] = useReducer(reducer, { afterChange, initialValues }, initializer);
+  const [state, dispatch] = useReducer(reducer, {
+    afterChange, initialValues, initialContext,
+  }, initializer);
 
   function getValue(name) {
     return state.values[name] === undefined ? '' : state.values[name];
   }
 
-  function setValue(name, value) {
+  async function setValue(name, value) {
     if (!beforeChange) {
       dispatch({ values: { ...state.values, [name]: value } });
       return;
     }
-    const errorsCopy = { ...state.errors };
-    const valuesCopy = { ...state.values };
+    const errors = { ...state.errors };
+    const values = { ...state.values };
+    const context = { ...state.context };
 
-    beforeChange({
-      errors: errorsCopy,
-      name,
-      value,
-      values: valuesCopy,
+    values[name] = value;
+
+    await beforeChange({
+      context, errors, name, prevValue: state.values[name], value, values,
     });
 
     const update = {};
 
-    if (isDifferent(state.errors, errorsCopy)) {
-      update.errors = errorsCopy;
+    if (isDifferent(state.context, context)) {
+      update.context = context;
     }
 
-    if (isDifferent(state.values, valuesCopy)) {
-      update.values = valuesCopy;
-    } else if (value !== state.values[name]) {
-      valuesCopy[name] = value;
-      update.values = valuesCopy;
+    if (isDifferent(state.errors, errors)) {
+      update.errors = errors;
+    }
+
+    if (isDifferent(state.values, values)) {
+      update.values = values;
     }
 
     if (!Object.keys(update).length) {
@@ -95,6 +101,7 @@ export default function kissMyForm({
 
     const values = { ...state.values };
     const errors = { ...state.errors };
+    const context = { ...state.context };
 
     Object.entries(state.values).forEach(([name, value]) => {
       beforeChange({
@@ -103,6 +110,10 @@ export default function kissMyForm({
     });
 
     const update = {};
+
+    if (isDifferent(state.context, context)) {
+      update.context = context;
+    }
 
     if (isDifferent(state.errors, errors)) {
       update.errors = errors;
