@@ -14,10 +14,7 @@ function reducer(state, update) {
     update.hasErrors = Object.keys(update.errors).length;
   }
 
-  const newState = {
-    ...state,
-    ...update,
-  };
+  const newState = { ...state, ...update };
 
   if (state.afterChange) {
     setTimeout(state.afterChange, 0, newState);
@@ -61,10 +58,8 @@ export default function kissMyForm({
       return;
     }
     const errors = { ...state.errors };
-    const values = { ...state.values };
+    const values = { ...state.values, [name]: value };
     const context = { ...state.context };
-
-    values[name] = value;
 
     await beforeChange({
       context, errors, name, prevValue: state.values[name], value, values,
@@ -92,12 +87,8 @@ export default function kissMyForm({
   }
 
   function validate() {
-    if (state.hasErrors) {
-      return state.hasErrors;
-    }
-    if (!beforeChange) {
-      return 0;
-    }
+    if (state.hasErrors) return state.hasErrors;
+    if (!beforeChange) return 0;
 
     const values = { ...state.values };
     const errors = { ...state.errors };
@@ -123,9 +114,7 @@ export default function kissMyForm({
       update.values = values;
     }
 
-    if (!Object.keys(update).length) {
-      return 0;
-    }
+    if (!Object.keys(update).length) return 0;
 
     dispatch({ values, errors });
     return Object.keys(errors).length;
@@ -139,17 +128,16 @@ export default function kissMyForm({
   }
 
   function handleSubmit(cb) {
-    return (event) => {
+    return async (event) => {
       event.preventDefault();
       const errorCount = validate();
-      if (errorCount) {
-        return errorCount;
-      }
 
-      const cancel = cb(state.values);
-      if (!cancel) {
+      if (errorCount) return errorCount;
+
+      if (!await cb(state.values)) {
         dispatch({ initialValues: state.values });
       }
+
       return 0;
     };
   }
@@ -158,22 +146,14 @@ export default function kissMyForm({
     if (!state.values[name]) {
       state.values[name] = '';
     }
-    return {
-      name,
-      value: getValue(name),
-      onChange: setInput,
-    };
+    return { name, value: getValue(name), onChange: setInput };
   }
 
   function checkboxControl(name) {
     if (!state.values[name]) {
       state.values[name] = false;
     }
-    return {
-      name,
-      value: getValue(name),
-      onChange: setChecked,
-    };
+    return { name, value: getValue(name), onChange: setChecked };
   }
 
   return {

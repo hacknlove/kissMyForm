@@ -115,6 +115,10 @@ It handles the onSubmit event of the form element.
 
 It calls `callback(values)` if there is no errors.
 
+If the callback function returns something falsy, it understands the forms has been submited so it sets `initialValues` to the current `values` and thus `isDirty` to `false`
+
+If the callback function returns something truthy, it understands the forms has not submited,
+
 ### `{...inputControl(name)}`
 
 it's a sintaxis-sugar helper that sets some values that the checkbox element to be managed.
