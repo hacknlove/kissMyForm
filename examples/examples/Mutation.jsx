@@ -26,10 +26,10 @@ function beforeChange({
 }) {
   switch (name) {
     case 'email':
-      values.email = value.toLowerCase()
+      values.email = value.toLowerCase().replace(/[^a-z0-9.@]/g, '');
       break;
     case 'phone':
-      values.phone = phoneFormating(value)
+      values.phone = phoneFormating(value);
       break;
   }
 }
