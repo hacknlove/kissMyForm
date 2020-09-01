@@ -27,8 +27,15 @@ export default function Home() {
 
           <Link href="/required">
             <a className={styles.card}>
-              <h3>Basic example &darr;</h3>
-              <p>Just update the form state, and call the submit handler</p>
+              <h3>Required example &darr;</h3>
+              <p>Fields are required</p>
+            </a>
+          </Link>
+
+          <Link href="/mutation">
+            <a className={styles.card}>
+              <h3>Mutation example &darr;</h3>
+              <p>Values are mutated</p>
             </a>
           </Link>
 

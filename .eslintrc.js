@@ -26,5 +26,7 @@ module.exports = {
     'react/prop-types': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'no-param-reassign': 0,
+    'jsx-a11y/label-has-associated-control': 0,
+    'default-case': 0,
   },
 };
