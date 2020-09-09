@@ -10,7 +10,7 @@
 ### Hello-Word-ish Example
 
 ```javascript
-import useKMF from 'useKMF'
+import useKMF from 'kissmyform'
 
 exports default SomeFormComponent ({ onSubmit }) {
   const { inputControl, handleSubmit } = useKMF()
