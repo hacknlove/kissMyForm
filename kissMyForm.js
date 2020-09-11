@@ -136,6 +136,8 @@ export default function kissMyForm({
 
       if (!await cb(state.values)) {
         dispatch({ initialValues: state.values });
+      } else {
+        dispatch({ values: state.initialValues });
       }
 
       return 0;
@@ -145,6 +147,7 @@ export default function kissMyForm({
   function inputControl(name) {
     if (!state.values[name]) {
       state.values[name] = '';
+      state.initialValues[name] = '';
     }
     return { name, value: getValue(name), onChange: setInput };
   }
@@ -152,6 +155,7 @@ export default function kissMyForm({
   function checkboxControl(name) {
     if (!state.values[name]) {
       state.values[name] = false;
+      state.initialValues[name] = false;
     }
     return { name, value: getValue(name), onChange: setChecked };
   }
