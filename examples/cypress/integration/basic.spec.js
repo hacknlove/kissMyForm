@@ -1,7 +1,7 @@
 /* globals describe it cy */
 
 describe('Basic Example', () => {
-  it('successfully loads', () => {
+  it('successfully submite', () => {
     cy.visit('/basic');
     cy.get('form > button').click();
     cy.contains(JSON.stringify({ username: '', password: '' }, null, 4));

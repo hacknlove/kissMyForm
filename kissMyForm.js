@@ -96,7 +96,7 @@ export default function kissMyForm({
 
     Object.entries(state.values).forEach(([name, value]) => {
       beforeChange({
-        name, value, values, errors,
+        name, value, values, errors, context,
       });
     });
 
