@@ -134,12 +134,21 @@ export default function kissMyForm({
 
       if (errorCount) return errorCount;
 
-      if (!await cb(state.values)) {
-        dispatch({ initialValues: state.values });
-      } else {
-        dispatch({ values: state.initialValues });
-      }
+      const what = await cb(state.values, { state }, dispatch);
 
+      switch (what) {
+        case true:
+        case 'update':
+          dispatch({ initialValues: state.values });
+          break;
+        case false:
+        case 'reset':
+          dispatch({ values: state.initialValues });
+          break;
+        case undefined:
+        case 'keep':
+        default:
+      }
       return 0;
     };
   }
