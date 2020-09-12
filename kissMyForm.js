@@ -27,8 +27,8 @@ function initializer({ afterChange, initialValues, initialContext }) {
   return {
     afterChange,
     context: { ...initialContext },
-    initialContext,
-    initialValues,
+    initialContext: { ...initialContext },
+    initialValues: { ...initialValues },
     errors: {},
     hasErrors: 0,
     isDirty: false,
