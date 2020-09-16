@@ -11,7 +11,10 @@ function reducer(state, update) {
   }
 
   if (update.errors) {
-    update.hasErrors = Object.keys(update.errors).length;
+    update.hasErrors = Object.values(update.errors).reduce(
+      (previousValue, currentValue) => previousValue + Number(Boolean(currentValue)),
+      0,
+    );
   }
 
   const newState = { ...state, ...update };
@@ -117,7 +120,10 @@ export default function kissMyForm({
     if (!Object.keys(update).length) return 0;
 
     dispatch({ values, errors });
-    return Object.keys(errors).length;
+    return Object.values(update.errors).reduce(
+      (previousValue, currentValue) => previousValue + Number(Boolean(currentValue)),
+      0,
+    );
   }
 
   function setInput({ target: { name, value } }) {
