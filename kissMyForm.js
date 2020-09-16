@@ -140,6 +140,10 @@ export default function kissMyForm({
 
       if (errorCount) return errorCount;
 
+      if (!cb) {
+        return 0;
+      }
+
       const what = await cb(state.values, { state }, dispatch);
 
       switch (what) {
