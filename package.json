@@ -1,6 +1,6 @@
 {
   "name": "kissmyform",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "a react hook to deal with forms",
   "module": "kissMyForm.js",
   "scripts": {
