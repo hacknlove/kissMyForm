@@ -2,8 +2,6 @@
 
 **Kiss My Form** is probably the most simple yet powerfull react form helper out there.
 
-180 lines of very clear and readable code, are enough to enhance your DX and make it possible to bring your users a great form's UX with very little effort and verbosity.
-
 ## Demos and Examples
 [demo and examples](https://hacknlove.github.io/kissMyForm/)
 
