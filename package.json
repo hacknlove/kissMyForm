@@ -1,8 +1,7 @@
 {
   "name": "kissmyform",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "a react hook to deal with forms",
-  "main": "kissMyForm.js",
   "module": "kissMyForm.js",
   "scripts": {
     "test": "rm -r ./docs; cd examples && npx next build && npx next export -o ../docs && cd ../docs && ln -s ./ kissMyForm && cd ../examples && npm test && rm ../docs/kissMyForm && touch ../docs/.nojekyll"
