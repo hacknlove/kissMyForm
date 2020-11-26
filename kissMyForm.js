@@ -55,7 +55,7 @@ export default function kissMyForm({
     return state.values[name] === undefined ? '' : state.values[name];
   }
 
-  async function setValue(name, value) {
+  function setValue(name, value) {
     if (!beforeChange) {
       dispatch({ values: { ...state.values, [name]: value } });
       return;
@@ -64,7 +64,7 @@ export default function kissMyForm({
     const values = { ...state.values, [name]: value };
     const context = { ...state.context };
 
-    await beforeChange({
+    beforeChange({
       context, errors, name, prevValue: state.values[name], value, values,
     });
 
