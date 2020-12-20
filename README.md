@@ -32,13 +32,14 @@ React hook that help you manage the form.
 ### options
 
 * `afterChange(state)` function that is called each after the form state is updated.
+* `afterChangeDebounce` If set, the afterChange function will be debounced this amount of miliseconds. 
 * `beforeChange({ context, errors, name, value, values })` function that is called before the form state is updated. `values`and `errors` can be mutated to change the update.
 * `initialContext`: object with the initial context of the form. Context are values that your form use to know how to behave, but it is not intended to be submited.
 * `initialValues`: object with the initial values of the form.
 
 ### helpers
 
-* `checkboxControl(name)`: sintactic sugar for `name={name} value={getValue(name)} onChange={setChecked}`.
+* `checkboxControl(name)`: sintactic sugar for `name={name} checked={getValue(name)} onChange={setChecked}`.
 * `dispatch(newState)`: Updates the form state, computing `isDirty` and `hasErrors`, and calling `afterChange`.
 * `getValue(name)`: returns the value of the form element whose name is `name`.
 * `handleSubmit(callback)`: it calls `callback` when the form is submitted if there is no errors.

@@ -11,6 +11,8 @@ import styles from '../styles/Home.module.css';
 export function ExamplePage({ code, Example, title }) {
   const [submited, setSubmiter] = useState();
 
+  code = code.replace("import useKMF from '../kissMyForm';", "import useKMF from 'kissmyform';");
+
   return (
     <div className={styles.container}>
       <Head>

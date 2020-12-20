@@ -20,15 +20,21 @@ function reducer(state, update) {
   const newState = { ...state, ...update };
 
   if (state.afterChange) {
-    setTimeout(state.afterChange, 0, newState);
+    if (state.debounced) {
+      clearTimeout(state.debounced);
+    }
+    state.debounced = setTimeout(state.afterChange, state.afterChangeDebounce, newState);
   }
 
   return newState;
 }
 
-function initializer({ afterChange, initialValues, initialContext }) {
+function initializer({
+  afterChange, afterChangeDebounce = 0, initialValues, initialContext
+}) {
   return {
     afterChange,
+    afterChangeDebounce,
     context: { ...initialContext },
     initialContext: { ...initialContext },
     initialValues: { ...initialValues },
@@ -43,12 +49,13 @@ const staticinitialValues = {};
 
 export default function kissMyForm({
   afterChange,
+  afterChangeDebounce = 0,
   beforeChange,
   initialContext = staticinitialValues,
   initialValues = staticinitialValues,
 } = {}) {
   const [state, dispatch] = useReducer(reducer, {
-    afterChange, initialValues, initialContext,
+    afterChange, initialValues, initialContext, afterChangeDebounce,
   }, initializer);
 
   function getValue(name) {
@@ -176,7 +183,7 @@ export default function kissMyForm({
       state.values[name] = false;
       state.initialValues[name] = false;
     }
-    return { name, value: getValue(name), onChange: setChecked };
+    return { name, checked: getValue(name), onChange: setChecked };
   }
 
   return {

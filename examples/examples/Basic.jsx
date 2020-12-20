@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import useKMF from 'kissmyform';
+import useKMF from '../kissMyForm';
 
 export default function BasicExample({ onSubmit }) {
   const { inputControl, handleSubmit } = useKMF();

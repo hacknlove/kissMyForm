@@ -1,4 +1,4 @@
-import useKMF from 'kissmyform';
+import useKMF from '../kissMyForm';
 import styles from '../styles/Home.module.css';
 
 function phoneFormating(number) {
