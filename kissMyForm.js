@@ -23,7 +23,7 @@ function reducer(state, update) {
     if (state.debounced) {
       clearTimeout(state.debounced);
     }
-    state.debounced = setTimeout(state.afterChange, state.afterChangeDebounce, newState);
+    newState.debounced = setTimeout(state.afterChange, state.afterChangeDebounce, newState);
   }
 
   return newState;
