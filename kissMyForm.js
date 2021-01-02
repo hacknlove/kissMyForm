@@ -126,8 +126,9 @@ export default function kissMyForm({
 
     if (!Object.keys(update).length) return 0;
 
-    dispatch({ values, errors });
-    return Object.values(update.errors).reduce(
+    dispatch(update);
+
+    return Object.values(errors).reduce(
       (previousValue, currentValue) => previousValue + Number(Boolean(currentValue)),
       0,
     );
