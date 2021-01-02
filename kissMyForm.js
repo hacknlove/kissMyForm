@@ -19,7 +19,7 @@ function reducer(state, update) {
 
   const newState = { ...state, ...update };
 
-  if (state.afterChange && isDifferent(state, newState)) {
+  if (state.afterChange && update.values && isDifferent(state.values, update.values)) {
     if (state.debounced) {
       clearTimeout(state.debounced);
     }
@@ -30,7 +30,7 @@ function reducer(state, update) {
 }
 
 function initializer({
-  afterChange, afterChangeDebounce = 0, initialValues, initialContext
+  afterChange, afterChangeDebounce = 0, initialValues, initialContext,
 }) {
   return {
     afterChange,
