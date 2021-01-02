@@ -19,7 +19,7 @@ function reducer(state, update) {
 
   const newState = { ...state, ...update };
 
-  if (state.afterChange) {
+  if (state.afterChange && isDifferent(state, newState)) {
     if (state.debounced) {
       clearTimeout(state.debounced);
     }
