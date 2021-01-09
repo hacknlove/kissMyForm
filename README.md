@@ -1,3 +1,9 @@
+# Warning - DEPRECATED
+
+I am deprecating this librery, because it has not worked well with a new scenario I run into, in which I needed the form to be spreaded in many tabs and components. I could have passed the functions and state from parents to children through properties but it did not felt right, and in this complex scenario I care about too many refreshes.
+
+I will keep maintaining it as long as I stil use it a couple of places in production, but I won't use it in new projects and sooner or later those old projects will end or will be updated. 
+
 # Kiss My Form
 
 **Kiss My Form** is probably the most simple yet powerfull react form helper out there.
